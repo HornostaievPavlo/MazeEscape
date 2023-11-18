@@ -208,8 +208,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.7071067, y: -2.3283064e-10, z: 3.4924597e-10, w: 0.7071068}
-  m_LocalPosition: {x: 13.005432, y: 47.00055, z: 9.633356}
+  m_LocalRotation: {x: 0.5006913, y: -0.0012977526, z: 0.00075141026, w: 0.86562467}
+  m_LocalPosition: {x: 15.879419, y: 39.670315, z: -8.916111}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -602,8 +602,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cellPrefab: {fileID: 6402721442885797204, guid: 8962cda0ee88cbe468108aef98252182,
     type: 3}
-  totalWidth: 8
-  totalDepth: 8
+  mazeExitPrefab: {fileID: 7626860206397613557, guid: a71f174f524075d4eb9ce1444c5e5841,
+    type: 3}
+  totalWidth: 10
+  totalDepth: 10
 --- !u!4 &1193082057
 Transform:
   m_ObjectHideFlags: 0
@@ -638,7 +640,7 @@ MonoBehaviour:
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_UseGeometry: 0
+  m_UseGeometry: 1
   m_DefaultArea: 0
   m_GenerateLinks: 0
   m_IgnoreNavMeshAgent: 1
@@ -646,7 +648,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.33333334
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: c42634881cd25d5468812921c8ac83a1, type: 2}
   m_BuildHeightMesh: 0

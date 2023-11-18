@@ -10,6 +10,9 @@ public class MazeGenerator : MonoBehaviour
     private MazeCell cellPrefab;
 
     [SerializeField]
+    private GameObject mazeExitPrefab;
+
+    [SerializeField]
     private int totalWidth;
 
     [SerializeField]
@@ -42,6 +45,8 @@ public class MazeGenerator : MonoBehaviour
 
         var surface = GetComponent<NavMeshSurface>();
         surface.BuildNavMesh();
+
+        AddMazeExit();
     }
 
     private IEnumerator GenerateMaze(MazeCell previous, MazeCell current)
@@ -122,6 +127,13 @@ public class MazeGenerator : MonoBehaviour
                 yield return cellToBack;
             }
         }
+    }
+
+    private void AddMazeExit()
+    {
+        var lastCell = mazeGrid[mazeGrid.GetUpperBound(0), mazeGrid.GetUpperBound(1)];
+
+        Instantiate(mazeExitPrefab, lastCell.transform);
     }
 
     private void RemoveWalls(MazeCell previous, MazeCell current)
