@@ -459,8 +459,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cellPrefab: {fileID: 6402721442885797204, guid: 8962cda0ee88cbe468108aef98252182,
     type: 3}
-  totalWidth: 10
-  totalDepth: 10
+  totalWidth: 5
+  totalDepth: 5
 --- !u!4 &1193082057
 Transform:
   m_ObjectHideFlags: 0
@@ -470,7 +470,7 @@ Transform:
   m_GameObject: {fileID: 1193082055}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 7, y: 7, z: 7}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -503,7 +503,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.33333334
+  m_VoxelSize: 0.25
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: c42634881cd25d5468812921c8ac83a1, type: 2}
   m_BuildHeightMesh: 0
@@ -643,11 +643,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mazeGenerator: {fileID: 1193082056}
-  mazeExitPrefab: {fileID: 7626860206397613557, guid: a71f174f524075d4eb9ce1444c5e5841,
-    type: 3}
   playerPrefab: {fileID: 2316589703562181160, guid: 8969e6e8e411b934f8a91fd07b19278f,
     type: 3}
   enemyPrefab: {fileID: 243448878248464373, guid: abf525c3819718c4899d614467110b27,
+    type: 3}
+  enemiesAmount: 3
+  mazeExitPrefab: {fileID: 7626860206397613557, guid: a71f174f524075d4eb9ce1444c5e5841,
     type: 3}
 --- !u!4 &1664804407
 Transform:

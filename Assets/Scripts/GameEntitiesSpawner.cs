@@ -12,6 +12,9 @@ public class GameEntitiesSpawner : MonoBehaviour
     private GameObject enemyPrefab;
 
     [SerializeField]
+    private int enemiesAmount;
+
+    [SerializeField]
     private GameObject mazeExitPrefab;
 
     private void Awake() => EventsHandler.MazeGenerated.AddListener(SpawnEntities);
@@ -19,30 +22,38 @@ public class GameEntitiesSpawner : MonoBehaviour
     private void SpawnEntities(MazeCell[,] grid)
     {
         SpawnPlayer();
-        SpawnEnemies(grid);
         SpawnMazeExit(grid);
+
+        for (int i = 0; i < enemiesAmount; i++)
+        {
+            SpawnEnemy(grid);
+        }
     }
 
     private void SpawnPlayer() => Instantiate(playerPrefab);
 
-    private void SpawnEnemies(MazeCell[,] grid)
+    private void SpawnEnemy(MazeCell[,] grid)
     {
-        int startRandomW = Random.Range(2, grid.GetUpperBound(0));
-        int startRandomD = Random.Range(2, grid.GetUpperBound(1));
+        int offsetFromPlayerCorner = 1;
 
-        int endRandomW = Random.Range(2, grid.GetUpperBound(0));
-        int endRandomD = Random.Range(2, grid.GetUpperBound(1));
+        int startRandomW = Random.Range(offsetFromPlayerCorner, grid.GetUpperBound(0));
+        int startRandomD = Random.Range(offsetFromPlayerCorner, grid.GetUpperBound(1));
+
+        int endRandomW = Random.Range(offsetFromPlayerCorner, grid.GetUpperBound(0));
+        int endRandomD = Random.Range(offsetFromPlayerCorner, grid.GetUpperBound(1));
 
         Transform startPathPosition = grid[startRandomW, startRandomD].transform;
-        Debug.Log(startPathPosition);
-
         Transform endPathPosition = grid[endRandomW, endRandomD].transform;
-        Debug.Log(endPathPosition);
+
+        if (startPathPosition == endPathPosition)
+            return;
 
         var enemy = Instantiate(enemyPrefab, startPathPosition.position, Quaternion.identity);
 
-        enemy.GetComponent<EnemyMovement>().PathStartPosition = startPathPosition;
-        enemy.GetComponent<EnemyMovement>().PathEndPosition = endPathPosition;
+        var movementComponent = enemy.GetComponent<EnemyMovement>();
+
+        movementComponent.startPosition = startPathPosition;
+        movementComponent.endPosition = endPathPosition;
     }
 
     private void SpawnMazeExit(MazeCell[,] grid)
