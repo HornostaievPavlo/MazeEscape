@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.AI.Navigation;
 using UnityEngine;
 
 public class MazeGenerator : MonoBehaviour
@@ -18,13 +19,10 @@ public class MazeGenerator : MonoBehaviour
 
     private IEnumerator Start()
     {
-        PopulateGridWithCells();
-
-        var firstCell = mazeGrid[0, 0];
-        yield return GenerateMaze(null, firstCell);
+        yield return PopulateGridWithCells();
     }
 
-    private void PopulateGridWithCells()
+    private IEnumerator PopulateGridWithCells()
     {
         mazeGrid = new MazeCell[totalWidth, totalDepth];
 
@@ -33,10 +31,17 @@ public class MazeGenerator : MonoBehaviour
             for (int j = 0; j < totalDepth; j++)
             {
                 var currentCellPosition = new Vector3(i, 0, j);
-                mazeGrid[i, j] = Instantiate(cellPrefab, currentCellPosition, Quaternion.identity);
+                mazeGrid[i, j] = Instantiate(cellPrefab, currentCellPosition, Quaternion.identity, transform);
                 mazeGrid[i, j].name = $"Row {i}, Column {j}";
+                mazeGrid[i, j].transform.localPosition = currentCellPosition;
             }
         }
+
+        var firstCell = mazeGrid[0, 0];
+        yield return GenerateMaze(null, firstCell);
+
+        var surface = GetComponent<NavMeshSurface>();
+        surface.BuildNavMesh();
     }
 
     private IEnumerator GenerateMaze(MazeCell previous, MazeCell current)
@@ -69,8 +74,8 @@ public class MazeGenerator : MonoBehaviour
 
     private IEnumerable<MazeCell> FindAllUnvisitedCells(MazeCell current)
     {
-        int xPos = (int)current.transform.position.x;
-        int zPos = (int)current.transform.position.z;
+        int xPos = (int)current.transform.localPosition.x;
+        int zPos = (int)current.transform.localPosition.z;
 
         int cellToRightPos = xPos + 1;
         int cellToLeftPos = xPos - 1;
@@ -123,28 +128,28 @@ public class MazeGenerator : MonoBehaviour
     {
         if (previous == null) return;
 
-        if (previous.transform.position.x < current.transform.position.x)
+        if (previous.transform.localPosition.x < current.transform.localPosition.x)
         {
             previous.ClearRightWall();
             current.ClearLeftWall();
             return;
         }
 
-        if (previous.transform.position.x > current.transform.position.x)
+        if (previous.transform.localPosition.x > current.transform.localPosition.x)
         {
             previous.ClearLeftWall();
             current.ClearRightWall();
             return;
         }
 
-        if (previous.transform.position.z < current.transform.position.z)
+        if (previous.transform.localPosition.z < current.transform.localPosition.z)
         {
             previous.ClearFrontWall();
             current.ClearBackWall();
             return;
         }
 
-        if (previous.transform.position.z > current.transform.position.z)
+        if (previous.transform.localPosition.z > current.transform.localPosition.z)
         {
             previous.ClearBackWall();
             current.ClearFrontWall();
