@@ -1,18 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MazeGenerator : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private MazeCell cellPrefab;
+
+    [SerializeField]
+    private int width;
+
+    [SerializeField]
+    private int depth;
+
+    private MazeCell[,] mazeGrid;
+
+    private void Start()
     {
-        
+        PopulateGridWithCells();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void PopulateGridWithCells()
     {
-        
+        mazeGrid = new MazeCell[width, depth];
+
+        for (int i = 0; i < width; i++)
+        {
+            for (int j = 0; j < depth; j++)
+            {
+                var currentCellPosition = new Vector3(i, 0, j);
+                mazeGrid[i, j] = Instantiate(cellPrefab, currentCellPosition, Quaternion.identity);
+            }
+        }
     }
 }
