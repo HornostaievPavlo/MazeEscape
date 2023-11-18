@@ -10,9 +10,6 @@ public class MazeGenerator : MonoBehaviour
     private MazeCell cellPrefab;
 
     [SerializeField]
-    private GameObject mazeExitPrefab;
-
-    [SerializeField]
     private int totalWidth;
 
     [SerializeField]
@@ -23,6 +20,8 @@ public class MazeGenerator : MonoBehaviour
     private IEnumerator Start()
     {
         yield return PopulateGridWithCells();
+
+        EventsHandler.OnMazeGenerated(mazeGrid);
     }
 
     private IEnumerator PopulateGridWithCells()
@@ -35,8 +34,8 @@ public class MazeGenerator : MonoBehaviour
             {
                 var currentCellPosition = new Vector3(i, 0, j);
                 mazeGrid[i, j] = Instantiate(cellPrefab, currentCellPosition, Quaternion.identity, transform);
-                mazeGrid[i, j].name = $"Row {i}, Column {j}";
                 mazeGrid[i, j].transform.localPosition = currentCellPosition;
+                mazeGrid[i, j].name = $"Row {i}, Column {j}";
             }
         }
 
@@ -45,8 +44,6 @@ public class MazeGenerator : MonoBehaviour
 
         var surface = GetComponent<NavMeshSurface>();
         surface.BuildNavMesh();
-
-        AddMazeExit();
     }
 
     private IEnumerator GenerateMaze(MazeCell previous, MazeCell current)
@@ -127,13 +124,6 @@ public class MazeGenerator : MonoBehaviour
                 yield return cellToBack;
             }
         }
-    }
-
-    private void AddMazeExit()
-    {
-        var lastCell = mazeGrid[mazeGrid.GetUpperBound(0), mazeGrid.GetUpperBound(1)];
-
-        Instantiate(mazeExitPrefab, lastCell.transform);
     }
 
     private void RemoveWalls(MazeCell previous, MazeCell current)
