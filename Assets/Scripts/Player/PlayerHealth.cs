@@ -14,8 +14,6 @@ public class PlayerHealth : MonoBehaviour
         EventsHandler.PlayerDamaged.AddListener(ModifyHealth);
     }
 
-    private void Update() => CheckState();
-
     private void ModifyHealth(float amount)
     {
         currentHealth -= amount;
@@ -23,13 +21,11 @@ public class PlayerHealth : MonoBehaviour
         float currentHealthPercent = currentHealth / maxHealth;
 
         EventsHandler.OnPlayerHealthUpdated(currentHealthPercent);
-    }
 
-    private void CheckState()
-    {
         if (currentHealth == 0)
         {
-
+            Destroy(gameObject);
+            EventsHandler.OnPlayerKilled();
         }
     }
 }

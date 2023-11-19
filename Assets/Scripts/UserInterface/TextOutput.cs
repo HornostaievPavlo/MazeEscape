@@ -1,18 +1,43 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class TextOutput : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private TMP_Text mainText;
+
+    private void Start()
     {
-        
+        mainText = GetComponent<TMP_Text>();
+
+        EventsHandler.MazeGenerated.AddListener(DisplayGameStart);
+        EventsHandler.PlayerDamaged.AddListener(DisplayDamage);
+        EventsHandler.PlayerKilled.AddListener(DisplayGameOver);
+        EventsHandler.LevelFinished.AddListener(DisplayWin);
+    }
+    private void DisplayGameStart(MazeCell[,] grid)
+    {
+        int width = grid.GetUpperBound(0) + 1;
+        int depth = grid.GetUpperBound(1) + 1;
+
+        string output = $"Maze dimensions - {width} x {depth}";
+        mainText.text = output;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void DisplayDamage(float damage)
     {
-        
+        string output = $"Ouch, -{damage} health points";
+        mainText.text = output;
+    }
+
+    private void DisplayWin()
+    {
+        string output = "Level finished";
+        mainText.text = output;
+    }
+
+    private void DisplayGameOver()
+    {
+        string output = "Game over";
+        mainText.text = output;
     }
 }
