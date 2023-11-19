@@ -7,7 +7,7 @@ public class EnemyDamageArea : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        bool isPlayerHit = other.gameObject.TryGetComponent(out PlayerHealth playerHealth);
+        bool isPlayerHit = other.gameObject.TryGetComponent(out PlayerHealth _);
 
         if (isPlayerHit)
             EventsHandler.OnPlayerDamaged(damageAmount);

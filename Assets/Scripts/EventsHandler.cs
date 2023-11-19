@@ -16,10 +16,7 @@ public static class EventsHandler
 
     public static void OnPlayerDamaged(float damage) => PlayerDamaged.Invoke(damage);
 
-    public static void OnPlayerHealthUpdated(float changePercent)
-    {
-        PlayerHealthUpdated.Invoke(changePercent);
-    }
+    public static void OnPlayerHealthUpdated(float changePercent) => PlayerHealthUpdated.Invoke(changePercent);
 
     public static void OnPlayerKilled() => PlayerKilled.Invoke();
 
