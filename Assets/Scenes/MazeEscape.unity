@@ -459,8 +459,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cellPrefab: {fileID: 6402721442885797204, guid: 8962cda0ee88cbe468108aef98252182,
     type: 3}
-  totalWidth: 8
-  totalDepth: 8
+  totalWidth: 3
+  totalDepth: 3
 --- !u!4 &1193082057
 Transform:
   m_ObjectHideFlags: 0
@@ -647,7 +647,7 @@ MonoBehaviour:
     type: 3}
   enemyPrefab: {fileID: 243448878248464373, guid: abf525c3819718c4899d614467110b27,
     type: 3}
-  enemiesAmount: 6
+  enemiesAmount: 0
   mazeExitPrefab: {fileID: 7626860206397613557, guid: a71f174f524075d4eb9ce1444c5e5841,
     type: 3}
 --- !u!4 &1664804407

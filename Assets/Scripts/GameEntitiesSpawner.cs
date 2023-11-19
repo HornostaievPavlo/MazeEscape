@@ -60,6 +60,8 @@ public class GameEntitiesSpawner : MonoBehaviour
     {
         var lastCell = grid[grid.GetUpperBound(0), grid.GetUpperBound(1)];
 
-        Instantiate(mazeExitPrefab, lastCell.transform);
+        var exit = Instantiate(mazeExitPrefab, lastCell.transform);
+
+        exit.AddComponent<MazeExit>();
     }
 }
