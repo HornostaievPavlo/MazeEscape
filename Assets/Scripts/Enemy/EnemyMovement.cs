@@ -8,8 +8,6 @@ public class EnemyMovement : MonoBehaviour
 
     private NavMeshAgent agent;
 
-    private Transform currentDestination;
-
     private Transform playerInSight;
 
     private bool isPlayerInSight;
@@ -36,16 +34,14 @@ public class EnemyMovement : MonoBehaviour
                 SetRandomDestination();
         }
         else
-        {
             agent.SetDestination(playerInSight.position);
-        }
     }
 
     private void SetRandomDestination()
     {
-        currentDestination = Random.Range(0, 2) == 0 ? startPosition : endPosition;
+        var newDestination = Random.Range(0, 2) == 0 ? startPosition : endPosition;
 
-        agent.SetDestination(currentDestination.position);
+        agent.SetDestination(newDestination.position);
     }
 
     private void StartPlayerFollowing(Transform target)

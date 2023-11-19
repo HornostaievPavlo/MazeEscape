@@ -33,9 +33,9 @@ public class EnemyDamageArea : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        bool isPlayerInsideDamageArea = other.gameObject.TryGetComponent(out PlayerHealth _);
+        bool isPlayerHit = other.gameObject.TryGetComponent(out PlayerHealth _);
 
-        if (isPlayerInsideDamageArea)
+        if (isPlayerHit)
             EventsHandler.OnPlayerGotInSight(other.transform);
     }
 
@@ -49,9 +49,9 @@ public class EnemyDamageArea : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        bool isPlayerInsideDamageArea = other.gameObject.TryGetComponent(out PlayerHealth _);
+        bool hasPlayerExited = other.gameObject.TryGetComponent(out PlayerHealth _);
 
-        if (isPlayerInsideDamageArea)
+        if (hasPlayerExited)
         {
             isPlayerInSight = false;
             sightTimer = 0f;
