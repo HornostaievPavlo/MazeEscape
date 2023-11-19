@@ -6,9 +6,6 @@ public class GameEntitiesSpawner : MonoBehaviour
     private MazeGenerator mazeGenerator;
 
     [SerializeField]
-    private GameObject playerPrefab;
-
-    [SerializeField]
     private GameObject enemyPrefab;
 
     [SerializeField]
@@ -21,7 +18,6 @@ public class GameEntitiesSpawner : MonoBehaviour
 
     private void SpawnEntities(MazeCell[,] grid)
     {
-        SpawnPlayer();
         SpawnMazeExit(grid);
 
         for (int i = 0; i < enemiesAmount; i++)
@@ -29,8 +25,6 @@ public class GameEntitiesSpawner : MonoBehaviour
             SpawnEnemy(grid);
         }
     }
-
-    private void SpawnPlayer() => Instantiate(playerPrefab);
 
     private void SpawnEnemy(MazeCell[,] grid)
     {
