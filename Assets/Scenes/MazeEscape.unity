@@ -2060,10 +2060,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2104457450917640410, guid: 8969e6e8e411b934f8a91fd07b19278f,
+        type: 3}
+      propertyPath: m_Speed
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2104457450917640410, guid: 8969e6e8e411b934f8a91fd07b19278f,
+        type: 3}
+      propertyPath: m_Acceleration
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2316589703562181160, guid: 8969e6e8e411b934f8a91fd07b19278f,
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5839865637108842571, guid: 8969e6e8e411b934f8a91fd07b19278f,
+        type: 3}
+      propertyPath: maxHealth
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8448301059166810636, guid: 8969e6e8e411b934f8a91fd07b19278f,
         type: 3}
@@ -2479,7 +2494,7 @@ MonoBehaviour:
   mazeGenerator: {fileID: 1193082056}
   enemyPrefab: {fileID: 243448878248464373, guid: abf525c3819718c4899d614467110b27,
     type: 3}
-  enemiesAmount: 4
+  enemiesAmount: 6
   mazeExitPrefab: {fileID: 7626860206397613557, guid: a71f174f524075d4eb9ce1444c5e5841,
     type: 3}
 --- !u!4 &1664804407

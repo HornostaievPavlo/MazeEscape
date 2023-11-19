@@ -10,7 +10,6 @@ public class TextOutput : MonoBehaviour
         mainText = GetComponent<TMP_Text>();
 
         EventsHandler.MazeGenerated.AddListener(DisplayGameStart);
-        EventsHandler.PlayerDamaged.AddListener(DisplayDamage);
         EventsHandler.PlayerKilled.AddListener(DisplayGameOver);
         EventsHandler.LevelFinished.AddListener(DisplayWin);
     }
@@ -20,12 +19,6 @@ public class TextOutput : MonoBehaviour
         int depth = grid.GetUpperBound(1) + 1;
 
         string output = $"Maze dimensions - {width} x {depth}";
-        mainText.text = output;
-    }
-
-    private void DisplayDamage(float damage)
-    {
-        string output = $"Ouch, -{damage} health points";
         mainText.text = output;
     }
 
