@@ -4,13 +4,20 @@ public static class EventsHandler
 {
     public static UnityEvent<MazeCell[,]> MazeGenerated = new UnityEvent<MazeCell[,]>();
 
-    public static UnityEvent<int> PlayerDamaged = new UnityEvent<int>();
+    public static UnityEvent<float> PlayerDamaged = new UnityEvent<float>();
+
+    public static UnityEvent<float> PlayerHealthUpdated = new UnityEvent<float>();
 
     public static UnityEvent LevelFinished = new UnityEvent();
 
     public static void OnMazeGenerated(MazeCell[,] grid) => MazeGenerated.Invoke(grid);
 
-    public static void OnPlayerDamaged(int damage) => PlayerDamaged.Invoke(damage);
+    public static void OnPlayerDamaged(float damage) => PlayerDamaged.Invoke(damage);
+
+    public static void OnPlayerHealthUpdated(float changePercent)
+    {
+        PlayerHealthUpdated.Invoke(changePercent);
+    }
 
     public static void OnLevelFinished() => LevelFinished.Invoke();
 }

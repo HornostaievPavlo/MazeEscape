@@ -1,21 +1,21 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    [SerializeField] private Image gradientImage;
+    [SerializeField]
+    private Image gradientImage;
 
-    [SerializeField] private Gradient gradient;
+    [SerializeField]
+    private Gradient gradient;
 
-    [SerializeField] private float updateSpeed;
+    [SerializeField]
+    private float updateSpeed;
 
     private void Awake()
     {
-        //GetComponentInParent<HealthSystem>().OnHealthPercentChanged += HandleHealthChange;
-
-        //EventsHandler
+        EventsHandler.PlayerHealthUpdated.AddListener(HandleHealthChange);
 
         gradientImage.color = gradient.Evaluate(1f);
     }

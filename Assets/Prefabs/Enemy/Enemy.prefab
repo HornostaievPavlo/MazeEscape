@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 7851231978606259807}
   - component: {fileID: 8461593721383156996}
   - component: {fileID: 8241911533389938038}
+  - component: {fileID: 5752904309046190379}
   - component: {fileID: 1319903618769187136}
   - component: {fileID: 5912617621928432614}
   - component: {fileID: 6331674171391041547}
+  - component: {fileID: 1563019970827457794}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -87,6 +89,33 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &5752904309046190379
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 243448878248464373}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!136 &1319903618769187136
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -146,6 +175,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPosition: {fileID: 0}
   endPosition: {fileID: 0}
+--- !u!114 &1563019970827457794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 243448878248464373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 281700c6c52cd584ba421c51262954ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &539364300584691407
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,6 +199,7 @@ GameObject:
   - component: {fileID: 4208529746377981428}
   - component: {fileID: 7102421785960730211}
   - component: {fileID: 2154728646981474487}
+  - component: {fileID: 5440753510797443948}
   m_Layer: 0
   m_Name: Damage Area
   m_TagString: Untagged
@@ -173,7 +215,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 539364300584691407}
   m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.7, z: 1.2}
+  m_LocalPosition: {x: 0, y: 0.7, z: 1.5}
   m_LocalScale: {x: 110, y: 20, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -252,3 +294,16 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 3613567641014311022, guid: d7365ca4807b2364c904bf0a65d22c17, type: 3}
+--- !u!114 &5440753510797443948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539364300584691407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ed42f774c885bd41a77b9a8a4191648, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 1
