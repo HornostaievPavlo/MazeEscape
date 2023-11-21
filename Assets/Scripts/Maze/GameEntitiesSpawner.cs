@@ -3,16 +3,13 @@ using UnityEngine;
 public class GameEntitiesSpawner : MonoBehaviour
 {
     [SerializeField]
-    private MazeGenerator mazeGenerator;
+    private GameObject mazeExitPrefab;
 
     [SerializeField]
     private GameObject enemyPrefab;
 
     [SerializeField]
     private int enemiesAmount;
-
-    [SerializeField]
-    private GameObject mazeExitPrefab;
 
     private void Awake() => EventsHandler.MazeGenerated.AddListener(SpawnEntities);
 

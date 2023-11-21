@@ -9,12 +9,12 @@ public class TextOutput : MonoBehaviour
     {
         mainText = GetComponent<TMP_Text>();
 
-        EventsHandler.MazeGenerated.AddListener(DisplayGameStart);
-        EventsHandler.PlayerDamaged.AddListener(DisplayDamage);
-        EventsHandler.PlayerKilled.AddListener(DisplayGameOver);
-        EventsHandler.LevelFinished.AddListener(DisplayWin);
+        EventsHandler.MazeGenerated.AddListener(DisplayMazeSize);
+        EventsHandler.LevelFinished.AddListener(DisplayWinMessage);
+        EventsHandler.PlayerKilled.AddListener(DisplayGameOverMessage);
     }
-    private void DisplayGameStart(MazeCell[,] grid)
+
+    private void DisplayMazeSize(MazeCell[,] grid)
     {
         int width = grid.GetUpperBound(0) + 1;
         int depth = grid.GetUpperBound(1) + 1;
@@ -23,21 +23,15 @@ public class TextOutput : MonoBehaviour
         mainText.text = output;
     }
 
-    private void DisplayDamage(float damage)
+    private void DisplayWinMessage()
     {
-        string output = $"Ouch, -{damage} health points";
-        mainText.text = output;
+        string message = "Level finished";
+        mainText.text = message;
     }
 
-    private void DisplayWin()
+    private void DisplayGameOverMessage()
     {
-        string output = "Level finished";
-        mainText.text = output;
-    }
-
-    private void DisplayGameOver()
-    {
-        string output = "Game over";
-        mainText.text = output;
+        string message = "Game over";
+        mainText.text = message;
     }
 }
