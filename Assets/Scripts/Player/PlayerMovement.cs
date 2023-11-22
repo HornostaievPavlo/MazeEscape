@@ -3,9 +3,6 @@ using UnityEngine.AI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private float xInput;
-    private float yInput;
-
     private NavMeshAgent agent;
 
     private void Start() => agent = GetComponent<NavMeshAgent>();
@@ -14,6 +11,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void MoveAgent()
     {
+        var xInput = Input.GetAxis("Horizontal");
+        var yInput = Input.GetAxis("Vertical");
+
         if (xInput != 0 || yInput != 0)
         {
             var movementDirection = new Vector3(xInput, 0, yInput);
@@ -27,8 +27,4 @@ public class PlayerMovement : MonoBehaviour
             agent.SetDestination(transform.position);
         }
     }
-
-    public void SetHorizontalInput(float value) => xInput = value;
-
-    public void SetMobileVerticalInput(float value) => yInput = value;
 }
