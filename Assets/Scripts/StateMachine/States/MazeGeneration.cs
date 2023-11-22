@@ -15,6 +15,6 @@ public class MazeGeneration : State
     {
         yield return _stateHandler.mazeGenerator.Generate();
 
-        _stateHandler.SetState(new EntitiesSpawning(_stateHandler));
+        _stateHandler.SetState(new EntitiesSpawn(_stateHandler));
     }
 }

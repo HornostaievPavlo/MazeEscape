@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GameEntitiesSpawner : MonoBehaviour
+public class EntitiesFactory : MonoBehaviour
 {
     [SerializeField]
     private GameObject mazeExitPrefab;
@@ -11,16 +11,21 @@ public class GameEntitiesSpawner : MonoBehaviour
     [SerializeField]
     private int enemiesAmount;
 
-    private void Awake() => EventsHandler.MazeGenerated.AddListener(SpawnEntities);
+    [SerializeField]
+    private GameObject playerPrefab;
 
-    private void SpawnEntities(MazeCell[,] grid)
+    private void Awake() => EventsHandler.MazeGenerated.AddListener(CreateEntities);
+
+    public void CreateEntities(MazeCell[,] grid)
     {
-        SpawnMazeExit(grid);
-
         for (int i = 0; i < enemiesAmount; i++)
         {
             SpawnEnemy(grid);
         }
+
+        SpawnPlayer();
+
+        SpawnMazeExit(grid);
     }
 
     private void SpawnEnemy(MazeCell[,] grid)
@@ -46,6 +51,8 @@ public class GameEntitiesSpawner : MonoBehaviour
         movementComponent.startPosition = startPathPosition;
         movementComponent.endPosition = endPathPosition;
     }
+
+    private void SpawnPlayer() => Instantiate(playerPrefab);
 
     private void SpawnMazeExit(MazeCell[,] grid)
     {

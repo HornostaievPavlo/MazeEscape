@@ -15,7 +15,7 @@ public class MazeGenerator : MonoBehaviour
     [SerializeField]
     private int totalDepth;
 
-    private MazeCell[,] mazeGrid;
+    public MazeCell[,] mazeGrid;
 
     public IEnumerator Generate()
     {
@@ -28,7 +28,6 @@ public class MazeGenerator : MonoBehaviour
                 var currentCellPosition = new Vector3(i, 0, j);
                 mazeGrid[i, j] = Instantiate(cellPrefab, currentCellPosition, Quaternion.identity, transform);
                 mazeGrid[i, j].transform.localPosition = currentCellPosition;
-                mazeGrid[i, j].name = $"Row {i}, Column {j}";
             }
         }
 
