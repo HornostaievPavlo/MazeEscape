@@ -17,14 +17,7 @@ public class MazeGenerator : MonoBehaviour
 
     private MazeCell[,] mazeGrid;
 
-    private IEnumerator Start()
-    {
-        yield return PopulateGridWithCells();
-
-        EventsHandler.OnMazeGenerated(mazeGrid);
-    }
-
-    private IEnumerator PopulateGridWithCells()
+    public IEnumerator Generate()
     {
         mazeGrid = new MazeCell[totalWidth, totalDepth];
 
@@ -40,13 +33,13 @@ public class MazeGenerator : MonoBehaviour
         }
 
         var firstCell = mazeGrid[0, 0];
-        yield return GenerateMaze(null, firstCell);
+        yield return CreateMazeCell(null, firstCell);
 
         var surface = GetComponent<NavMeshSurface>();
         surface.BuildNavMesh();
     }
 
-    private IEnumerator GenerateMaze(MazeCell previous, MazeCell current)
+    private IEnumerator CreateMazeCell(MazeCell previous, MazeCell current)
     {
         current.Visit();
 
@@ -61,7 +54,7 @@ public class MazeGenerator : MonoBehaviour
 
             if (nextCell != null)
             {
-                yield return GenerateMaze(current, nextCell);
+                yield return CreateMazeCell(current, nextCell);
             }
         }
         while (nextCell != null);
