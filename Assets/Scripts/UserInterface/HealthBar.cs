@@ -13,11 +13,13 @@ public class HealthBar : MonoBehaviour
     [SerializeField]
     private float updateSpeed;
 
-    private void Awake()
-    {
-        EventsHandler.PlayerHealthUpdated.AddListener(HandleHealthChange);
+    private void Awake() => gradientImage.color = gradient.Evaluate(1f);
 
-        gradientImage.color = gradient.Evaluate(1f);
+    public void AssignPlayerToHealthBar()
+    {
+        var playerHealth = FindObjectOfType<PlayerHealth>();
+
+        playerHealth.PlayerHealthUpdated.AddListener(HandleHealthChange);
     }
 
     private void HandleHealthChange(float percent)

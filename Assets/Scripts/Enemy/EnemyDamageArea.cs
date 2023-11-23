@@ -8,35 +8,21 @@ public class EnemyDamageArea : MonoBehaviour
     [SerializeField]
     private float damageFrequency = 0.5f;
 
+    private EnemyMovement enemyMovement;
+
     private float sightTimer = 0f;
 
-    private bool isPlayerInSight = false;
-
-    private void Update()
-    {
-        if (!isPlayerInSight) return;
-
-        DamagePlayerInSight();
-    }
-
-    private void DamagePlayerInSight()
-    {
-        sightTimer += Time.deltaTime;
-
-        if (sightTimer >= damageFrequency)
-        {
-            EventsHandler.OnPlayerDamaged(damageAmount);
-
-            sightTimer = 0f;
-        }
-    }
+    private void Awake() => enemyMovement = GetComponentInParent<EnemyMovement>();
 
     private void OnTriggerEnter(Collider other)
     {
         bool isPlayerHit = other.gameObject.TryGetComponent(out PlayerHealth _);
 
         if (isPlayerHit)
-            EventsHandler.OnPlayerGotInSight(other.transform);
+        {
+            enemyMovement.isPlayerInSight = true;
+            enemyMovement.playerTransform = other.transform;
+        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -44,7 +30,10 @@ public class EnemyDamageArea : MonoBehaviour
         bool isPlayerInsideDamageArea = other.gameObject.TryGetComponent(out PlayerHealth _);
 
         if (isPlayerInsideDamageArea)
-            isPlayerInSight = true;
+        {
+            var playerHealth = other.gameObject.GetComponent<PlayerHealth>();
+            DamagePlayerInSight(playerHealth);
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -53,10 +42,21 @@ public class EnemyDamageArea : MonoBehaviour
 
         if (hasPlayerExited)
         {
-            isPlayerInSight = false;
             sightTimer = 0f;
 
-            EventsHandler.OnPlayerLostFromSight();
+            enemyMovement.isPlayerInSight = false;
+        }
+    }
+
+    private void DamagePlayerInSight(PlayerHealth playerHealth)
+    {
+        sightTimer += Time.deltaTime;
+
+        if (sightTimer >= damageFrequency)
+        {
+            playerHealth.ModifyHealth(damageAmount);
+
+            sightTimer = 0f;
         }
     }
 }

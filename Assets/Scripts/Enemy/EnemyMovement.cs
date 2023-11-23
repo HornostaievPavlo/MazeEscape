@@ -8,9 +8,9 @@ public class EnemyMovement : MonoBehaviour
 
     private NavMeshAgent agent;
 
-    private Transform playerInSight;
+    public Transform playerTransform;
 
-    private bool isPlayerInSight;
+    public bool isPlayerInSight;
 
     private void Start()
     {
@@ -18,9 +18,6 @@ public class EnemyMovement : MonoBehaviour
         SetRandomDestination();
 
         isPlayerInSight = false;
-
-        EventsHandler.PlayerGotInSight.AddListener(StartPlayerFollowing);
-        EventsHandler.PlayerLostFromSight.AddListener(ReturnToPath);
         EventsHandler.PlayerKilled.AddListener(ReturnToPath);
     }
 
@@ -34,7 +31,7 @@ public class EnemyMovement : MonoBehaviour
                 SetRandomDestination();
         }
         else
-            agent.SetDestination(playerInSight.position);
+            agent.SetDestination(playerTransform.position);
     }
 
     private void SetRandomDestination()
@@ -42,13 +39,6 @@ public class EnemyMovement : MonoBehaviour
         var newDestination = Random.Range(0, 2) == 0 ? startPosition : endPosition;
 
         agent.SetDestination(newDestination.position);
-    }
-
-    private void StartPlayerFollowing(Transform target)
-    {
-        isPlayerInSight = true;
-
-        playerInSight = target;
     }
 
     private void ReturnToPath() => isPlayerInSight = false;

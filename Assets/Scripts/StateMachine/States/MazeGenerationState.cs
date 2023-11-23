@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using UnityEngine;
 
 public class MazeGenerationState : BaseState
 {
@@ -13,5 +11,10 @@ public class MazeGenerationState : BaseState
         yield return context.mazeGenerator.Generate();
 
         context.SetState(context.entitiesSpawningState);
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
     }
 }

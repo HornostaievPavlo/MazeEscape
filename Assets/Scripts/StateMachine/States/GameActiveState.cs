@@ -23,4 +23,9 @@ public class GameActiveState : BaseState
     {
         context.SetState(context.levelFailedState);
     }
+
+    public override void Exit()
+    {
+        base.Exit();
+    }
 }

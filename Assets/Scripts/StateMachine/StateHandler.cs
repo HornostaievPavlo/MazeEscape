@@ -6,6 +6,8 @@ public class StateHandler : MonoBehaviour
 
     public EntitiesFactory entitiesFactory;
 
+    public HealthBar healthBar;
+
     public BaseState currentState;
 
     public MazeGenerationState mazeGenerationState;
@@ -26,7 +28,6 @@ public class StateHandler : MonoBehaviour
         StartCoroutine(currentState.Enter());
     }
 
-
     private void Update()
     {
         currentState.Execute();
@@ -34,6 +35,7 @@ public class StateHandler : MonoBehaviour
 
     public void SetState(BaseState state)
     {
+        currentState.Exit();
         currentState = state;
         state.Enter();
     }

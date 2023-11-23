@@ -367,6 +367,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mazeGenerator: {fileID: 1193082056}
   entitiesFactory: {fileID: 1664804406}
+  healthBar: {fileID: 2135718431}
 --- !u!4 &404738304
 Transform:
   m_ObjectHideFlags: 0
@@ -684,8 +685,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cellPrefab: {fileID: 6402721442885797204, guid: 8962cda0ee88cbe468108aef98252182,
     type: 3}
-  totalWidth: 4
-  totalDepth: 4
+  totalWidth: 15
+  totalDepth: 7
 --- !u!4 &1193082057
 Transform:
   m_ObjectHideFlags: 0
@@ -1152,7 +1153,7 @@ MonoBehaviour:
     type: 3}
   enemyPrefab: {fileID: 243448878248464373, guid: abf525c3819718c4899d614467110b27,
     type: 3}
-  enemiesAmount: 0
+  enemiesAmount: 10
   playerPrefab: {fileID: 2316589703562181160, guid: 8969e6e8e411b934f8a91fd07b19278f,
     type: 3}
 --- !u!4 &1664804407

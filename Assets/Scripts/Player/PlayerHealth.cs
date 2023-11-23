@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -7,25 +8,22 @@ public class PlayerHealth : MonoBehaviour
 
     private float currentHealth;
 
-    private void Start()
-    {
-        currentHealth = maxHealth;
+    public UnityEvent<float> PlayerHealthUpdated = new UnityEvent<float>();
 
-        EventsHandler.PlayerDamaged.AddListener(ModifyHealth);
-    }
+    private void Start() => currentHealth = maxHealth;
 
-    private void ModifyHealth(float amount)
+    public void ModifyHealth(float amount)
     {
         currentHealth -= amount;
 
         float currentHealthPercent = currentHealth / maxHealth;
 
-        EventsHandler.OnPlayerHealthUpdated(currentHealthPercent);
+        PlayerHealthUpdated.Invoke(currentHealthPercent);
 
         if (currentHealth == 0)
         {
-            Destroy(gameObject);
             EventsHandler.OnPlayerKilled();
+            Destroy(gameObject);
         }
     }
 }
