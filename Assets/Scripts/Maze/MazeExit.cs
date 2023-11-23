@@ -8,7 +8,7 @@ public class MazeExit : MonoBehaviour
     {
         bool isPlayerHit = other.gameObject.TryGetComponent(out PlayerMovement _);
 
-        if (isPlayerHit) 
-            stateMachine.SetState(new LevelFinished());
+        //if (isPlayerHit) 
+            //stateMachine.SetState(new LevelFinishedState());
     }
 }
