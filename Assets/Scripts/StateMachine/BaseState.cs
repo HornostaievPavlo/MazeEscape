@@ -2,18 +2,23 @@ using System.Collections;
 
 public abstract class BaseState
 {
-    public virtual IEnumerator Enter(StateHandler stateHandler)
+    protected StateHandler context;
+
+    public BaseState(StateHandler context)
+    {
+        this.context = context;
+    }
+
+    public virtual IEnumerator Enter()
     {
         yield break;
     }
 
-    public virtual IEnumerator Execute(StateHandler stateHandler)
+    public virtual void Execute()
     {
-        yield break;
     }
 
-    public virtual IEnumerator Exit(StateHandler stateHandler)
+    public virtual void Exit()
     {
-        yield break;
     }
 }

@@ -14,8 +14,6 @@ public class EntitiesFactory : MonoBehaviour
     [SerializeField]
     private GameObject playerPrefab;
 
-    private void Awake() => EventsHandler.MazeGenerated.AddListener(CreateEntities);
-
     public void CreateEntities(MazeCell[,] grid)
     {
         for (int i = 0; i < enemiesAmount; i++)

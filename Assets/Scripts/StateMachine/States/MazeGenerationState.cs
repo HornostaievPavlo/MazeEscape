@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class MazeGenerationState : BaseState
 {
-    public override IEnumerator Enter(StateHandler stateHandler)
+    public MazeGenerationState(StateHandler context) : base(context)
     {
-        Debug.Log("Entered maze");
-        yield return stateHandler.mazeGenerator.Generate();
+    }
+
+    public override IEnumerator Enter()
+    {
+        yield return context.mazeGenerator.Generate();
+
+        context.SetState(context.entitiesSpawningState);
     }
 }

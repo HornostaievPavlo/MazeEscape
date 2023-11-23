@@ -8,27 +8,33 @@ public class StateHandler : MonoBehaviour
 
     public BaseState currentState;
 
-    public MazeGenerationState mazeGenerationState = new MazeGenerationState();
-    public EntitiesSpawningState entitiesSpawningState = new EntitiesSpawningState();
-    public GameActiveState gameActiveState = new GameActiveState();
-    public LevelFailedState levelFailedState = new LevelFailedState();
-    public LevelFinishedState levelFinishedState = new LevelFinishedState();
+    public MazeGenerationState mazeGenerationState;
+    public EntitiesSpawningState entitiesSpawningState;
+    public GameActiveState gameActiveState;
+    public LevelFailedState levelFailedState;
+    public LevelFinishedState levelFinishedState;
 
     private void Start()
     {
+        mazeGenerationState = new MazeGenerationState(this);
+        entitiesSpawningState = new EntitiesSpawningState(this);
+        gameActiveState = new GameActiveState(this);
+        levelFailedState = new LevelFailedState(this);
+        levelFinishedState = new LevelFinishedState(this);
+
         currentState = mazeGenerationState;
-        StartCoroutine(currentState.Enter(this));
+        StartCoroutine(currentState.Enter());
     }
 
 
     private void Update()
     {
-        currentState.Execute(this);
+        currentState.Execute();
     }
 
     public void SetState(BaseState state)
     {
         currentState = state;
-        state.Enter(this);
+        state.Enter();
     }
 }
